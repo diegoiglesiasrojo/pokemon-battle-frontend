@@ -1,3 +1,4 @@
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -13,16 +14,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <header>
-          <Image
-            src='/pokemonLogo.png'
-            alt='pokemon Logo'
-            width={420}
-            height={140}
-            priority
-          />
-        </header>
-        {children}
+        <AppRouterCacheProvider>
+          <header>
+            <Image
+              src='/pokemonLogo.png'
+              alt='pokemon Logo'
+              width={420}
+              height={140}
+              priority
+            />
+          </header>
+          {children}
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
