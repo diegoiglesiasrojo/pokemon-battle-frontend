@@ -100,11 +100,11 @@ header {
 }
 
 footer {
-  height: 15vh;
+  height: 10vh;
 }
 
 main {
-  min-height: 60vh;
+  min-height: 65vh;
 }
 
 @media (prefers-color-scheme: dark) {

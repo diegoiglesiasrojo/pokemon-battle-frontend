@@ -20,6 +20,8 @@ NodeJS v22.2.0 or later
 
 ## Versions:
 
+- v0.3.2 | Created footer component.
+
 - v0.3.1 | Created header component.
 
 - v0.3.0 | Added Material UI and other extra dependencies.
