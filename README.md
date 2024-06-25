@@ -20,6 +20,14 @@ NodeJS v22.2.0 or later
 
 ## Versions:
 
+- v0.3.3 | Created toast component.
+
+- v0.3.2 | Created footer component.
+
+- v0.3.1 | Created header component.
+
+- v0.3.0 | Added Material UI and other extra dependencies.
+
 - v0.2.0 | Created routes and initial screens.
 
 - v0.1.0 | First commit.
