@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
             src='/pokemonLogo.png'
             alt='pokemon Logo'
             width={420}
-            height={240}
+            height={140}
             priority
           />
         </header>
