@@ -21,7 +21,6 @@ const NewPokemon = () => {
   const createPokemon = async (values) => {
     setIsLoading(true);
     const response = await createNewPokemon(values);
-    console.log(response);
     if (response.success) {
       setIsError(false);
       setMessage("Pokemon saved successfuly");
