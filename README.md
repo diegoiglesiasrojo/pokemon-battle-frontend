@@ -20,6 +20,8 @@ NodeJS v22.2.0 or later
 
 ## Versions:
 
+- v0.5.1 | Created battleList UI.
+
 - v0.5.0 | Created fetch service from battleList.
 
 - v0.4.1 | Created fetch service from createPokemon.
