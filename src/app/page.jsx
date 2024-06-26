@@ -10,9 +10,11 @@ import {
   CardContent,
   CardMedia,
   CardHeader,
+  CardActionArea,
 } from "@mui/material";
 import { readPokemonList } from "@/services/pokemon.services";
 import Toast from "@/components/toast/Toast";
+import { useRouter } from "next/navigation";
 
 export const PokemonList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +22,7 @@ export const PokemonList = () => {
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState("Unexpected error. Please try later");
   const [listOfPokemons, setListOfPokemons] = useState([]);
+  const router = useRouter();
 
   const handleClose = () => {
     setIsToastVisible(false);
@@ -61,8 +64,37 @@ export const PokemonList = () => {
   }
 
   return (
-    <main>
+    <main className={styles.main}>
       <h1>Pokemon Battle</h1>
+      <section className={styles.section}>
+        {listOfPokemons.map((pokemon) => {
+          return (
+            <Card
+              key={pokemon._id}
+              sx={{ maxWidth: 290 }}
+              className={styles.card}
+            >
+              <CardActionArea
+                onClick={() => router.push(`/pokemon/${pokemon._id}`)}
+                className={styles.cardAction}
+              >
+                <CardHeader
+                  className={styles.cardHeader}
+                  title={pokemon.name}
+                />
+                <CardContent>
+                  <CardMedia
+                    component='img'
+                    alt='pokemon'
+                    height='120'
+                    image={pokemon.imageUrl}
+                  />
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          );
+        })}
+      </section>
       <Toast
         isToastVisible={isToastVisible}
         handleClose={handleClose}

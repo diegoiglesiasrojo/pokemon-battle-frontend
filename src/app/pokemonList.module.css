@@ -17,3 +17,39 @@
   justify-content: center;
   align-items: center;
 }
+
+.main .card {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #bbe1fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .card .cardAction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .card .cardHeader span {
+  color: #1b262c;
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 479px) {
+  .main .section {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .main .card {
+    margin-bottom: 0px;
+  }
+}
