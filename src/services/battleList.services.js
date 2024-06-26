@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const createNewPokemon = async (newPokemon) => {
+export const readBattleList = async () => {
   return await axios
-    .post("http://localhost:4000/api/pokemon", { ...newPokemon })
+    .get("http://localhost:4000/api/battle")
     .then((response) => {
       const res = {
         success: true,
@@ -11,10 +11,10 @@ export const createNewPokemon = async (newPokemon) => {
       return res;
     })
     .catch((e) => {
-      const messageError = e.response.data.error
-        ? e.response.data.error
-        : e.response.data.validationError
-        ? e.response.data.validationError
+      const messageError = e?.response?.data?.error
+        ? e.response?.data?.error
+        : e.response?.data?.validationError
+        ? e.response?.data?.validationError
         : "Unexpected error. Please try later";
 
       const response = {
