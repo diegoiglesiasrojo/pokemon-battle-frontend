@@ -1,0 +1,19 @@
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main h1 {
+  margin: 20px;
+  text-align: center;
+}
+
+.main .section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
