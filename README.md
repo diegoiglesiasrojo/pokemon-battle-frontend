@@ -20,6 +20,10 @@ NodeJS v22.2.0 or later
 
 ## Versions:
 
+- v0.4.1 | Created fetch service from createPokemon.
+
+- v0.4.0 | Created new pokemon form.
+
 - v0.3.3 | Created toast component.
 
 - v0.3.2 | Created footer component.

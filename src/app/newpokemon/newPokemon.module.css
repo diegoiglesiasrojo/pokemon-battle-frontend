@@ -1,0 +1,79 @@
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main h1 {
+  margin: 20px;
+  text-align: center;
+}
+
+.main .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main .form .bigDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.main .form .bigDiv fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 90px;
+  width: 290px;
+  border-radius: 20px;
+}
+
+.main .form .bigDiv fieldset .inputContainer {
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.main .form .bigDiv fieldset .inputContainer label {
+  margin-right: 10px;
+}
+
+.main .form .bigDiv fieldset .inputContainer .fieldInput {
+  padding-left: 5px;
+}
+
+.main .form .bigDiv fieldset .errorMessageContainer {
+  margin-top: 10px;
+}
+
+.main .form .bigDiv fieldset p {
+  font-size: 0.7rem;
+  color: red;
+}
+
+.main .form .buttonSubmit {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #3282b8;
+  border-radius: 20px;
+  color: #3282b8;
+}
+
+@media screen and (min-width: 767px) {
+  .main .form .bigDiv {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main .form .bigDiv fieldset {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
