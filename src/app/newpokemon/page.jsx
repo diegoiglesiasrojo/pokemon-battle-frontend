@@ -1,17 +1,48 @@
 "use client";
 
 import styles from "./newPokemon.module.css";
+import { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { useRouter } from "next/navigation";
-import { Button } from "@mui/material";
+import { Button, Box, CircularProgress } from "@mui/material";
 import { validations } from "./validations";
+import { createNewPokemon } from "@/services/pokemon.services";
+import Toast from "@/components/toast/Toast";
 
 const NewPokemon = () => {
-  const router = useRouter(); //router.push('/')
+  const [isLoading, setIsLoading] = useState(false);
+  const [isToastVisible, setIsToastVisible] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState("Unexpected error. Please try later");
+
+  const handleClose = () => {
+    setIsToastVisible(false);
+  };
 
   const createPokemon = async (values) => {
-    console.log(values);
+    setIsLoading(true);
+    const response = await createNewPokemon(values);
+    console.log(response);
+    if (response.success) {
+      setIsError(false);
+      setMessage("Pokemon saved successfuly");
+      setIsToastVisible(true);
+    } else {
+      setMessage(response.error);
+      setIsError(true);
+      setIsToastVisible(true);
+    }
+    setIsLoading(false);
   };
+
+  if (isLoading) {
+    return (
+      <main className={styles.main}>
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress color='success' />
+        </Box>
+      </main>
+    );
+  }
 
   return (
     <main className={styles.main}>
@@ -149,6 +180,12 @@ const NewPokemon = () => {
           </Button>
         </Form>
       </Formik>
+      <Toast
+        isToastVisible={isToastVisible}
+        handleClose={handleClose}
+        isErrorToast={isError}
+        message={message}
+      />
     </main>
   );
 };
