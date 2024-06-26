@@ -52,6 +52,14 @@ const BattleList = () => {
     );
   }
 
+  if (listOfBattles.length === 0) {
+    return (
+      <main className={styles.main}>
+        <h1>Fail to load data. Please try later.</h1>
+      </main>
+    );
+  }
+
   return (
     <main className={styles.main}>
       <h1>Battle List</h1>
