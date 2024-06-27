@@ -60,9 +60,9 @@
 .main .form .buttonSubmit {
   margin-top: 20px;
   margin-bottom: 20px;
-  border: 2px solid #3282b8;
-  border-radius: 20px;
-  color: #3282b8;
+  background-color: #bbe1fa;
+  color: green;
+  font-weight: 700;
 }
 
 @media screen and (min-width: 767px) {
