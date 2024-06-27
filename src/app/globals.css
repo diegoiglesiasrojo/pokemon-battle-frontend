@@ -95,6 +95,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  color: white;
+}
+
 header {
   height: 25vh;
 }

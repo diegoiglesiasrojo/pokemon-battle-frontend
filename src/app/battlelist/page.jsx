@@ -96,7 +96,7 @@ const BattleList = () => {
                   <CardMedia
                     component='img'
                     alt='pokemon'
-                    height='120'
+                    height='80'
                     image={battle.firstPokemon.imageUrl}
                   />
                   <p>{battle.firstPokemon.name}</p>
