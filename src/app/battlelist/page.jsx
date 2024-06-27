@@ -56,6 +56,12 @@ const BattleList = () => {
     return (
       <main className={styles.main}>
         <h1>Fail to load data. Please try later.</h1>
+        <Toast
+          isToastVisible={isToastVisible}
+          handleClose={handleClose}
+          isErrorToast={isError}
+          message={message}
+        />
       </main>
     );
   }

@@ -20,6 +20,8 @@ NodeJS v22.2.0 or later
 
 ## Versions:
 
+- v0.7.1 | Created onePokemon UI.
+
 - v0.7.0 | Created fetch service from onePokemon.
 
 - v0.6.1 | Created pokemonList UI.

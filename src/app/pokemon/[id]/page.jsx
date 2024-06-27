@@ -67,6 +67,12 @@ const Pokemon = () => {
     return (
       <main className={styles.main}>
         <h1>Fail to load data. Please try later.</h1>
+        <Toast
+          isToastVisible={isToastVisible}
+          handleClose={handleClose}
+          isErrorToast={isError}
+          message={message}
+        />
       </main>
     );
   }
@@ -75,8 +81,37 @@ const Pokemon = () => {
   console.log(onePokemon);
   return (
     <main className={styles.main}>
-      <h1>Pokemon {id}</h1>
-      <section className={styles.section}></section>
+      <Card key={onePokemon._id} className={styles.card}>
+        <CardHeader className={styles.cardHeader} title={onePokemon.name} />
+        <CardContent className={styles.cardContent}>
+          <div className={styles.cardDiv}>
+            <CardMedia
+              className={styles.cardMedia}
+              component='img'
+              alt='pokemon'
+              image={onePokemon.imageUrl}
+            />
+            <div className={styles.cardDivStats}>
+              <div>
+                <p>Type: {onePokemon.type}</p>
+                <p>HP: {onePokemon.hp}</p>
+                <p>Defense: {onePokemon.defense}</p>
+              </div>
+              <div>
+                <p>Attack: {onePokemon.attack}</p>
+                <p>Speed: {onePokemon.speed}</p>
+              </div>
+            </div>
+          </div>
+          <div className={styles.cardDivButtons}>
+            <div className={styles.cardDivButtonsInternal}>
+              <Button className={styles.cardButtonEdit}>Edit</Button>
+              <Button className={styles.cardButtonDelete}>Delete</Button>
+            </div>
+            <Button className={styles.cardButtonFight}>Fight</Button>
+          </div>
+        </CardContent>
+      </Card>
       <Toast
         isToastVisible={isToastVisible}
         handleClose={handleClose}
