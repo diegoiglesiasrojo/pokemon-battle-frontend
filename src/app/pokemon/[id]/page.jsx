@@ -44,7 +44,6 @@ const Pokemon = () => {
     const fetchData = async () => {
       const response = await readPokemonById(id);
       if (response.success) {
-        console.log(response.response.response);
         setOnePokemon(response.response.response);
         setIsError(false);
       } else {

@@ -43,6 +43,7 @@
 }
 
 .main .card .firstCardContent {
+  width: 130px;
   margin-bottom: 10px;
   padding: 16px;
   background-color: #bbe1fa;
@@ -55,8 +56,19 @@
   align-items: center;
 }
 
+.main .card .firstCardContent img,
+.main .card .secondCardContent img {
+  width: 80px;
+  height: 80px;
+}
+
+.main .card .firstCardContent p {
+  color: black;
+}
+
 .main .card .secondCardContent {
   padding: 16px;
+  width: 130px;
   background-color: #bbe1fa;
   border-width: 5px;
   border-style: solid;
@@ -65,6 +77,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.main .card .secondCardContent p {
+  color: black;
 }
 
 .main .card .cardContent p {
@@ -91,6 +107,12 @@
   .main .section {
     width: 100%;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+  }
+
+  .main .card {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }

@@ -20,6 +20,8 @@ NodeJS v22.2.0 or later
 
 ## Versions:
 
+- v1.0.0 | Created fight sistem.
+
 - v0.7.4 | Fixed onePokemon service.
 
 - v0.7.3 | Created delete pokemon sistem.
