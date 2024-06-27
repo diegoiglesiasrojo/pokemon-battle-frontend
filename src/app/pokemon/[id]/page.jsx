@@ -16,9 +16,9 @@ import {
   CardHeader,
 } from "@mui/material";
 import {
-  readPokemonList,
   updatePokemon,
   deletePokemon,
+  readPokemonById,
 } from "@/services/pokemon.services";
 import { validations } from "@/app/newpokemon/validations";
 
@@ -31,7 +31,6 @@ const Pokemon = () => {
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState("Unexpected error. Please try later");
-  const [listOfPokemons, setListOfPokemons] = useState([]);
   const [onePokemon, setOnePokemon] = useState({});
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -43,13 +42,10 @@ const Pokemon = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async () => {
-      const response = await readPokemonList();
+      const response = await readPokemonById(id);
       if (response.success) {
-        const pokemonObj = response.response.response.filter((pokemon) => {
-          return pokemon._id === id;
-        });
-        setListOfPokemons(response.response.response);
-        setOnePokemon(pokemonObj[0]);
+        console.log(response.response.response);
+        setOnePokemon(response.response.response);
         setIsError(false);
       } else {
         setMessage(response.error);
@@ -183,7 +179,13 @@ const Pokemon = () => {
                 Delete
               </Button>
             </div>
-            <Button disabled={isEditOpen} className={styles.cardButtonFight}>
+            <Button
+              onClick={() => {
+                router.push(`/fight/${onePokemon._id}`);
+              }}
+              disabled={isEditOpen}
+              className={styles.cardButtonFight}
+            >
               Fight
             </Button>
           </div>

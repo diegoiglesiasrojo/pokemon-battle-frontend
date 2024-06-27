@@ -79,7 +79,32 @@ export const updatePokemon = async (updatedPokemon, pokemonId) => {
 
 export const deletePokemon = async (pokemonId) => {
   return await axios
-    .delete(`http://localhost:4000/api/pokemonid/${pokemonId}`, {})
+    .delete(`http://localhost:4000/api/pokemonid/${pokemonId}`)
+    .then((response) => {
+      const res = {
+        success: true,
+        response: response.data,
+      };
+      return res;
+    })
+    .catch((e) => {
+      const messageError = e?.response?.data?.error
+        ? e?.response?.data?.error
+        : e?.response?.data?.validationError
+        ? e?.response?.data?.validationError
+        : "Unexpected error. Please try later";
+
+      const response = {
+        success: false,
+        error: messageError,
+      };
+      return response;
+    });
+};
+
+export const readPokemonById = async (pokemonId) => {
+  return await axios
+    .get(`http://localhost:4000/api/pokemonid/${pokemonId}`)
     .then((response) => {
       const res = {
         success: true,
