@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Toast from "@/components/toast/Toast";
 import styles from "./onePokemon.module.css";
@@ -15,12 +15,17 @@ import {
   CardMedia,
   CardHeader,
 } from "@mui/material";
-import { readPokemonList, updatePokemon } from "@/services/pokemon.services";
+import {
+  readPokemonList,
+  updatePokemon,
+  deletePokemon,
+} from "@/services/pokemon.services";
 import { validations } from "@/app/newpokemon/validations";
 
 const Pokemon = () => {
   const params = useParams();
   const { id } = params;
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(true);
   const [isToastVisible, setIsToastVisible] = useState(false);
@@ -29,6 +34,7 @@ const Pokemon = () => {
   const [listOfPokemons, setListOfPokemons] = useState([]);
   const [onePokemon, setOnePokemon] = useState({});
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const handleClose = () => {
     setIsToastVisible(false);
@@ -85,6 +91,27 @@ const Pokemon = () => {
       setIsToastVisible(true);
     }
     setIsLoading(false);
+  };
+
+  const deleteOnePokemon = async () => {
+    setIsLoading(true);
+
+    const response = await deletePokemon(onePokemon._id);
+    if (response.success) {
+      setIsError(false);
+      setMessage("Pokemon deleted successfuly");
+      setIsToastVisible(true);
+      setIsDeleteOpen(false);
+      setIsLoading(false);
+      setInterval(() => {
+        router.push("/");
+      }, 2000);
+    } else {
+      setMessage(response.error);
+      setIsError(true);
+      setIsToastVisible(true);
+      setIsLoading(false);
+    }
   };
 
   if (isLoading) {
@@ -146,7 +173,13 @@ const Pokemon = () => {
               >
                 Edit
               </Button>
-              <Button disabled={isEditOpen} className={styles.cardButtonDelete}>
+              <Button
+                onClick={() => {
+                  setIsDeleteOpen(true);
+                }}
+                disabled={isEditOpen}
+                className={styles.cardButtonDelete}
+              >
                 Delete
               </Button>
             </div>
@@ -303,6 +336,28 @@ const Pokemon = () => {
             </div>
           </Form>
         </Formik>
+      </section>
+      <section
+        style={{ display: isDeleteOpen ? "flex" : "none" }}
+        className={styles.deleteModalSection}
+      >
+        <p>¿Do you want to delete this pokemon?</p>
+        <div className={styles.deleteModalDiv}>
+          <Button
+            onClick={deleteOnePokemon}
+            className={styles.deleteModalButtonYes}
+          >
+            Yes. Delete!
+          </Button>
+          <Button
+            onClick={() => {
+              setIsDeleteOpen(false);
+            }}
+            className={styles.deleteModalButtonNo}
+          >
+            Cancel
+          </Button>
+        </div>
       </section>
       <Toast
         isToastVisible={isToastVisible}

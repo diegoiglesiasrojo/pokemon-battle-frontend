@@ -20,6 +20,8 @@ NodeJS v22.2.0 or later
 
 ## Versions:
 
+- v0.7.3 | Created delete pokemon sistem.
+
 - v0.7.2 | Created edit pokemon sistem.
 
 - v0.7.1 | Created onePokemon UI.
