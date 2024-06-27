@@ -1,0 +1,57 @@
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main h1 {
+  margin: 20px;
+  text-align: center;
+}
+
+.main .section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .card {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #bbe1fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .card .cardAction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .card .cardHeader span {
+  color: #1b262c;
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 479px) {
+  .main .section {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .main .card {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

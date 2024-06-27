@@ -1,0 +1,249 @@
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .card {
+  width: 100%;
+  padding: 10px;
+  box-shadow: none;
+  background-color: #1b262c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main .card .cardHeader span {
+  color: #bbe1fa;
+  font-size: 2rem;
+}
+
+.main .card .cardContent,
+.main .card .cardContent .cardDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .card .cardContent .cardMedia {
+  width: 150px;
+  height: 150px;
+}
+
+.main .card .cardContent .cardDivStats {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main .card .cardContent .cardDivStats p {
+  color: #bbe1fa;
+  font-size: 1.2rem;
+  padding: 5px;
+  margin: 5px;
+}
+
+.main .card .cardContent .cardDivButtons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main .card .cardContent .cardDivButtons .cardDivButtonsInternal {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main .card .cardContent .cardDivButtonsInternal .cardButtonEdit {
+  background-color: #3282b8;
+  color: #1b262c;
+  font-weight: 700;
+}
+
+.main .card .cardContent .cardDivButtonsInternal .cardButtonDelete {
+  background-color: #3282b8;
+  color: red;
+  font-weight: 700;
+}
+
+.main .card .cardContent .cardButtonFight {
+  background-color: #bbe1fa;
+  color: green;
+  font-weight: 700;
+  margin-left: 10px;
+  border: 3px solid green;
+  margin-top: 20px;
+}
+
+.main .formSection {
+  width: 100%;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.main .formSection .form {
+  width: 90%;
+  padding: 10px;
+  border: 3px solid #3282b8;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main .formSection .form .formBigDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main .formSection .form .formBigDiv fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 90px;
+  width: 250px;
+  border-radius: 20px;
+}
+
+.main .formSection .form .formBigDiv fieldset .inputContainer {
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.main .formSection .form .formBigDiv fieldset .inputContainer label {
+  margin-right: 10px;
+}
+
+.main .formSection .form .formBigDiv fieldset .inputContainer .fieldInput {
+  padding-left: 5px;
+  width: 150px;
+}
+
+.main .formSection .form .formBigDiv fieldset .errorMessageContainer {
+  margin-top: 10px;
+}
+
+.main .formSection .form .formBigDiv fieldset p {
+  font-size: 0.7rem;
+  color: red;
+}
+
+.main .formSection .form .formDivButtons {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.main .formSection .form .formButtonSubmit {
+  background-color: #bbe1fa;
+  color: green;
+  font-weight: 700;
+}
+
+.main .formSection .form .formButtonCancel {
+  background-color: #bbe1fa;
+  color: red;
+  font-weight: 700;
+}
+
+.main .deleteModalSection {
+  position: absolute;
+  background-color: #0f4c75;
+  opacity: 0.8;
+  padding: 20px;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .deleteModalSection p {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.main .deleteModalSection .deleteModalDiv {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.main .deleteModalSection .deleteModalButtonYes {
+  background-color: #bbe1fa;
+  color: red;
+  font-weight: 700;
+  border: 3px solid red;
+  border-radius: 10px;
+}
+
+.main .deleteModalSection .deleteModalButtonNo {
+  background-color: #bbe1fa;
+  color: green;
+  font-weight: 700;
+  border: 3px solid green;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 479px) {
+  .main .card .cardContent {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .main .card .cardContent .cardDiv {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main .card .cardContent .cardDivButtons {
+    width: 150px;
+  }
+
+  .main .formSection .form .formDivButtons {
+    width: 300px;
+  }
+
+  .main .formSection .form {
+    width: 420px;
+  }
+
+  .main .deleteModalSection p,
+  .main .deleteModalSection .deleteModalDiv {
+    width: 350px;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .main .formSection .form {
+    width: 90%;
+  }
+
+  .main .formSection .form .formBigDiv {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .main .formSection .form .formBigDiv fieldset {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

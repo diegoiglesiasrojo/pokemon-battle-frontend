@@ -1,0 +1,32 @@
+footer {
+  background-color: #bbe1fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  color: #1b262c;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.footerDiv {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerDiv p a {
+  color: green;
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.footerDiv .footerDivSecondP {
+  margin-left: 5px;
+  margin-right: 5px;
+}

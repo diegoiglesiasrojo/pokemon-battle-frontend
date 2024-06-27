@@ -1,6 +1,8 @@
-import Image from "next/image";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,16 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <header>
-          <Image
-            src='/pokemonLogo.png'
-            alt='pokemon Logo'
-            width={420}
-            height={240}
-            priority
-          />
-        </header>
-        {children}
+        <AppRouterCacheProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
