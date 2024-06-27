@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useParams } from "next/navigation";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import Toast from "@/components/toast/Toast";
 import styles from "./onePokemon.module.css";
 import { useState, useEffect } from "react";
@@ -13,9 +14,9 @@ import {
   CardContent,
   CardMedia,
   CardHeader,
-  CardActionArea,
 } from "@mui/material";
-import { readPokemonList } from "@/services/pokemon.services";
+import { readPokemonList, updatePokemon } from "@/services/pokemon.services";
+import { validations } from "@/app/newpokemon/validations";
 
 const Pokemon = () => {
   const params = useParams();
@@ -27,6 +28,7 @@ const Pokemon = () => {
   const [message, setMessage] = useState("Unexpected error. Please try later");
   const [listOfPokemons, setListOfPokemons] = useState([]);
   const [onePokemon, setOnePokemon] = useState({});
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   const handleClose = () => {
     setIsToastVisible(false);
@@ -53,6 +55,38 @@ const Pokemon = () => {
     setIsLoading(false);
   }, []);
 
+  const editPokemon = async (values) => {
+    setIsLoading(true);
+    setIsEditOpen(false);
+
+    const keysFromValuesToSend = Object.keys(values).filter((valueToFormat) => {
+      return values[valueToFormat] !== onePokemon[valueToFormat];
+    });
+
+    const valuesToSend = {};
+    keysFromValuesToSend.forEach((valueToSend) => {
+      valuesToSend[valueToSend] = values[valueToSend];
+    });
+
+    const response = await updatePokemon(valuesToSend, onePokemon._id);
+    if (response.success) {
+      const newOnePokemonObject = { ...onePokemon };
+      keysFromValuesToSend.forEach((valueToSend) => {
+        newOnePokemonObject[valueToSend] = values[valueToSend];
+      });
+
+      setOnePokemon(newOnePokemonObject);
+      setIsError(false);
+      setMessage("Pokemon saved successfuly");
+      setIsToastVisible(true);
+    } else {
+      setMessage(response.error);
+      setIsError(true);
+      setIsToastVisible(true);
+    }
+    setIsLoading(false);
+  };
+
   if (isLoading) {
     return (
       <main className={styles.main}>
@@ -77,8 +111,6 @@ const Pokemon = () => {
     );
   }
 
-  console.log(listOfPokemons);
-  console.log(onePokemon);
   return (
     <main className={styles.main}>
       <Card key={onePokemon._id} className={styles.card}>
@@ -105,13 +137,173 @@ const Pokemon = () => {
           </div>
           <div className={styles.cardDivButtons}>
             <div className={styles.cardDivButtonsInternal}>
-              <Button className={styles.cardButtonEdit}>Edit</Button>
-              <Button className={styles.cardButtonDelete}>Delete</Button>
+              <Button
+                onClick={() => {
+                  setIsEditOpen(true);
+                }}
+                disabled={isEditOpen}
+                className={styles.cardButtonEdit}
+              >
+                Edit
+              </Button>
+              <Button disabled={isEditOpen} className={styles.cardButtonDelete}>
+                Delete
+              </Button>
             </div>
-            <Button className={styles.cardButtonFight}>Fight</Button>
+            <Button disabled={isEditOpen} className={styles.cardButtonFight}>
+              Fight
+            </Button>
           </div>
         </CardContent>
       </Card>
+      <section
+        className={styles.formSection}
+        style={{ display: isEditOpen ? "flex" : "none" }}
+      >
+        <Formik
+          initialValues={{
+            name: onePokemon.name,
+            type: onePokemon.type,
+            imageUrl: onePokemon.imageUrl,
+            attack: onePokemon.attack,
+            defense: onePokemon.defense,
+            hp: onePokemon.hp,
+            speed: onePokemon.speed,
+          }}
+          validationSchema={validations}
+          onSubmit={editPokemon}
+        >
+          <Form className={styles.form}>
+            <div className={styles.formBigDiv}>
+              <fieldset>
+                <div className={styles.inputContainer}>
+                  <label htmlFor='name'>Name:</label>
+                  <Field
+                    className={styles.fieldInput}
+                    placeholder='name'
+                    name='name'
+                    type='text'
+                  />
+                </div>
+                <div className={styles.errorMessageContainer}>
+                  <ErrorMessage name='name'>
+                    {(msg) => <p className={styles.errorMessage}>{msg}</p>}
+                  </ErrorMessage>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className={styles.inputContainer}>
+                  <label htmlFor='type'>Type:</label>
+                  <Field
+                    className={styles.fieldInput}
+                    placeholder='type'
+                    name='type'
+                    type='text'
+                  />
+                </div>
+                <div className={styles.errorMessageContainer}>
+                  <ErrorMessage name='type'>
+                    {(msg) => <p className={styles.errorMessage}>{msg}</p>}
+                  </ErrorMessage>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className={styles.inputContainer}>
+                  <label htmlFor='imageUrl'>Image url:</label>
+                  <Field
+                    className={styles.fieldInput}
+                    placeholder='imageUrl'
+                    name='imageUrl'
+                    type='text'
+                  />
+                </div>
+                <div className={styles.errorMessageContainer}>
+                  <ErrorMessage name='imageUrl'>
+                    {(msg) => <p className={styles.errorMessage}>{msg}</p>}
+                  </ErrorMessage>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className={styles.inputContainer}>
+                  <label htmlFor='attack'>Attack:</label>
+                  <Field
+                    className={styles.fieldInput}
+                    placeholder='attack'
+                    name='attack'
+                    type='number'
+                  />
+                </div>
+                <div className={styles.errorMessageContainer}>
+                  <ErrorMessage name='attack'>
+                    {(msg) => <p className={styles.errorMessage}>{msg}</p>}
+                  </ErrorMessage>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className={styles.inputContainer}>
+                  <label htmlFor='defense'>Defense:</label>
+                  <Field
+                    className={styles.fieldInput}
+                    placeholder='defense'
+                    name='defense'
+                    type='number'
+                  />
+                </div>
+                <div className={styles.errorMessageContainer}>
+                  <ErrorMessage name='defense'>
+                    {(msg) => <p className={styles.errorMessage}>{msg}</p>}
+                  </ErrorMessage>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className={styles.inputContainer}>
+                  <label htmlFor='hp'>Hp:</label>
+                  <Field
+                    className={styles.fieldInput}
+                    placeholder='hp'
+                    name='hp'
+                    type='number'
+                  />
+                </div>
+                <div className={styles.errorMessageContainer}>
+                  <ErrorMessage name='hp'>
+                    {(msg) => <p className={styles.errorMessage}>{msg}</p>}
+                  </ErrorMessage>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className={styles.inputContainer}>
+                  <label htmlFor='speed'>Speed:</label>
+                  <Field
+                    className={styles.fieldInput}
+                    placeholder='speed'
+                    name='speed'
+                    type='number'
+                  />
+                </div>
+                <div className={styles.errorMessageContainer}>
+                  <ErrorMessage name='speed'>
+                    {(msg) => <p className={styles.errorMessage}>{msg}</p>}
+                  </ErrorMessage>
+                </div>
+              </fieldset>
+            </div>
+            <div className={styles.formDivButtons}>
+              <Button className={styles.formButtonSubmit} type={"submit"}>
+                Submit
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsEditOpen(false);
+                }}
+                className={styles.formButtonCancel}
+              >
+                Cancel
+              </Button>
+            </div>
+          </Form>
+        </Formik>
+      </section>
       <Toast
         isToastVisible={isToastVisible}
         handleClose={handleClose}
